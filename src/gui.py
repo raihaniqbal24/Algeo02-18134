@@ -10,11 +10,21 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 
 
 class Ui_Tubes2Algeo(object):
+    def getDatasetPath(self):
+        database_path = QtWidgets.QFileDialog.getExistingDirectory(None, "Select Folder")
+        self.FolderChosen.setText('{}'.format(str(database_path)))
+        self.database_path = database_path
+    
+    def getFilePath(self):
+        file_path = QtWidgets.QFileDialog.getOpenFileName(None, "Select File", "", "JPEG Files(*.jpg)")
+        self.FileChosen.setText('{}'.format(str(file_path[0])))
+        self.file_path = file_path
+    
     def setupUi(self, Tubes2Algeo):
         Tubes2Algeo.setObjectName("Tubes2Algeo")
         Tubes2Algeo.resize(752, 410)
         self.verticalLayoutWidget = QtWidgets.QWidget(Tubes2Algeo)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(20, 60, 158, 287))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(20, 60, 158, 291))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
@@ -27,6 +37,7 @@ class Ui_Tubes2Algeo(object):
         self.verticalLayout_2.addWidget(self.InsertDataset)
         self.ChooseFolder = QtWidgets.QPushButton(self.verticalLayoutWidget)
         self.ChooseFolder.setObjectName("ChooseFolder")
+        self.ChooseFolder.clicked.connect(self.getDatasetPath)
         self.verticalLayout_2.addWidget(self.ChooseFolder)
         self.FolderChosen = QtWidgets.QLabel(self.verticalLayoutWidget)
         font = QtGui.QFont()
@@ -46,6 +57,7 @@ class Ui_Tubes2Algeo(object):
         self.verticalLayout_3.addWidget(self.InsertImageFile)
         self.ChooseFile = QtWidgets.QPushButton(self.verticalLayoutWidget)
         self.ChooseFile.setObjectName("ChooseFile")
+        self.ChooseFile.clicked.connect(self.getFilePath)
         self.verticalLayout_3.addWidget(self.ChooseFile)
         self.FileChosen = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.FileChosen.setObjectName("FileChosen")
@@ -77,10 +89,10 @@ class Ui_Tubes2Algeo(object):
         self.TestImageLabel.setFont(font)
         self.TestImageLabel.setObjectName("TestImageLabel")
         self.TestImage = QtWidgets.QLabel(Tubes2Algeo)
-        self.TestImage.setGeometry(QtCore.QRect(260, 150, 151, 141))
+        self.TestImage.setGeometry(QtCore.QRect(260, 150, 150, 150))
         self.TestImage.setObjectName("TestImage")
         self.ClosestImage = QtWidgets.QLabel(Tubes2Algeo)
-        self.ClosestImage.setGeometry(QtCore.QRect(500, 150, 151, 141))
+        self.ClosestImage.setGeometry(QtCore.QRect(500, 150, 150, 150))
         self.ClosestImage.setObjectName("ClosestImage")
 
         self.retranslateUi(Tubes2Algeo)
