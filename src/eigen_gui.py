@@ -18,7 +18,7 @@ class Ui_MainWindow(object):
     
     def getFilePath(self):
         file_path = QtWidgets.QFileDialog.getOpenFileName(None, "Select File", "", "JPEG Files(*.jpg)")
-        self.FileChosen.setText('{}'.format(str(os.path.relpath(file_path[0]))))
+        self.FileChosen.setText('{}'.format(str(os.path.relpath(file_path[0], '../'))))
         self.file_path = file_path
 
     def setupUi(self, MainWindow):
